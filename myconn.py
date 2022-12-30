@@ -52,12 +52,12 @@ for con in connections:
                     
                 
                 print('---------------------------')
-                print (processName," :: ",con.pid," :: ", con.raddr.ip, " :: ", con.status," :: ",location_data)
+                print (processName," :: ",con.pid," :: ", con.raddr.ip,":",con.raddr.port," :: ", con.status," :: ",location_data)
                 processName_url="<a href=https://google.com/search?q="+processName+" target=_blank>"
                 if processName=="System Idle Process":
-                    processName_url="<a href=https://google.com/search?q='"+processName+"' target=_blank>"
+                    processName_url="<a href=https://google.com/search?q="+processName.replace(" ","")+" target=_blank>"
                     
-                riga="<tr><td>"+processName_url+processName+"</a></td><td>"+str(con.pid)+"</td><td>"+con.raddr.ip+"</td><td>"+con.status+"</td><td>"+str(location_data)+"</td></tr>"
+                riga="<tr><td>"+processName_url+processName+"</a></td><td>"+str(con.pid)+"</td><td>"+con.raddr.ip+":"+str(con.raddr.port)+"</td><td>"+con.status+"</td><td>"+str(location_data)+"</td></tr>"
                 print(str(riga).replace("(","").replace("'","").replace(")",""),file=db)
                    
 db.close()
